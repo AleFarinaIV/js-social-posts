@@ -70,12 +70,14 @@ posts.forEach((post) => {
     postContainer.innerHTML +=
     `<div class="post">
         <div class="post-header">
-            <div class="post-meta__icon">
+            <div class="post-meta">
+                <div class="post-meta__icon">
                 <img class="profile-pic" src="${image}" alt="${name}">
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${name}</div>
                 <div class="post-meta__time">4 mesi fa</div>
+            </div>
             </div>
         </div>
         <div class="post__text">${content}</div>
