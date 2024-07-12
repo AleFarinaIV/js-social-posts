@@ -123,6 +123,13 @@ postContainer.addEventListener('click', function(event) {
         // incremento il counter dei likes
         let currentLikes = parseInt(likeCounter.textContent);
         likeCounter.textContent = currentLikes + 1;
+
+        // vado ad aggiungere gli ID dei post a cui viene messo like nell'array vuoto
+        if (!arrayId.includes(postId)) {
+            arrayId.push(postId);
+            console.log(arrayId)
+        }
     }
+
 
 });
