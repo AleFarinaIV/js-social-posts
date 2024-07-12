@@ -61,22 +61,26 @@ const postContainer = document.getElementById('container');
 
 // creo la struttura HTML per ogni post utilizzando forEach
 posts.forEach((post) => {
-    
+
+    // destrutturazione
+    let { id, content, media, author, likes, created } = post;
+    let {name, image} = author;
+
     // aggiungo il post al contenitore
     postContainer.innerHTML +=
     `<div class="post">
         <div class="post-header">
             <div class="post-meta__icon">
-                <img class="profile-pic" src="${post.author.image}" alt="${post.author.name}">
+                <img class="profile-pic" src="${image}" alt="${name}">
             </div>
             <div class="post-meta__data">
-                <div class="post-meta__author">${post.author.name}</div>
+                <div class="post-meta__author">${name}</div>
                 <div class="post-meta__time">4 mesi fa</div>
             </div>
         </div>
-        <div class="post__text">${post.content}</div>
+        <div class="post__text">${content}</div>
         <div class="post__image">
-            <img src="${post.media}" alt="">
+            <img src="${media}" alt="">
         </div>
         <div class="post__footer">
             <div class="likes js-likes">
@@ -87,7 +91,7 @@ posts.forEach((post) => {
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
                 </div>
             </div> 
         </div>
