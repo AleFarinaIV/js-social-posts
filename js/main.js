@@ -55,3 +55,6 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+// recupero il contenitore per i post dall'HTML
+const postContainer = document.getElementById('container');
