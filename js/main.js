@@ -93,9 +93,15 @@ posts.forEach((post) => {
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                    Piace a <b id="like-counter-${id}" class="js-likes-counter">${likes}</b> persone
                 </div>
             </div> 
         </div>
     </div>`
-}) 
+});
+
+// recupero il bottone del like dal DOM
+const likeButtons = document.querySelectorAll('.js-like-button');
+
+// recupero il counter del like dal DOM
+const counterLikes = document.querySelectorAll('js-likes-counter');
