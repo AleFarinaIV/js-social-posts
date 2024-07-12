@@ -87,7 +87,7 @@ posts.forEach((post) => {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#${id}" data-postid="1">
+                    <a class="like-button  js-like-button" href="#${id}" data-postid="${id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -100,17 +100,29 @@ posts.forEach((post) => {
     </div>`
 });
 
-// recupero il bottone del like dal DOM
-const likeButtons = document.querySelectorAll('.js-like-button');
-
-// recupero il counter del like dal DOM
-const counterLikes = document.querySelectorAll('js-likes-counter');
-
 // creo un array vuoto per gli ID dei post
 let arrayId = [];
 
-likeButtons.forEach((el) => {
-    el.addEventListener('click', function() {
-        el.classList.add('like-button--liked')
-    })
-})
+postContainer.addEventListener('click', function(event) {
+    
+    // dichiaro una variabile per il button dei likes
+    const likeButtons = event.target.closest('.js-like-button');
+        
+    // controllo se il pulsante è già stato cliccato
+    if (!likeButtons.classList.contains('like-button--liked')) {
+        // se non è stato già cliccato aggiungo la classe "like-button--liked"
+        likeButtons.classList.add('like-button--liked');
+        
+        // vado a recuperare l'ID del post tramite l'attributo "data-postid"
+        const postId = likeButtons.getAttribute('data-postid');
+        
+        // recupero il counter del like dal DOM
+        const likeCounter = document.getElementById(`like-counter-${postId}`);
+        console.log(postId);
+        
+        // incremento il counter dei likes
+        let currentLikes = parseInt(likeCounter.textContent);
+        likeCounter.textContent = currentLikes + 1;
+    }
+
+});
