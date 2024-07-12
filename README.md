@@ -15,3 +15,9 @@ Prima scriviamo nei commenti la logica in italiano e poi traduciamo in codice.
 
 console.log() è nostro amico.
 Quando un pezzo di codice funziona, chiediamoci se possiamo scomporlo in funzioni più piccole.
+
+# Scomposizione del problema
+
+Milestone 1: vado a ricreare la struttura HTML all'interno dello script così da poter stampare tutti i post presenti nell'array di oggetti
+
+Milestone 2: utilizzando un evento click per il tasto mi piace lo faccio cambiare di colore e incremento il counter dei likes di conseguenza. Creo un nuovo array in cui ogni volta si inseriranno gli ID dei post ai quali si va a mettere like
