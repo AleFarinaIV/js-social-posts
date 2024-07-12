@@ -58,3 +58,8 @@ const posts = [
 
 // recupero il contenitore per i post dall'HTML
 const postContainer = document.getElementById('container');
+
+// creo la struttura HTML per ogni post utilizzando forEach
+posts.forEach((post) => {
+
+}) 
