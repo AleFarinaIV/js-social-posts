@@ -56,6 +56,27 @@ const posts = [
     }
 ];
 
+// funzione che setta l'immagine di default
+function defaultProfileImage(author) {
+    let { name, image } = author;
+    return `<img src="${image}" class="profile-pic">`;
+}
+
+// funzione che setta le initials come immagine profilo
+function profileImageInitials(author) {
+    let { name, image } = author;
+
+    let split = name.split(' ')
+    console.log(split)
+
+    let initials = split[0].charAt(0) + split[split.length - 1].charAt(0);
+    console.log(initials)
+
+    return `<div class="profile-pic-default">
+        <span>${initials}</span>
+        </div>`;
+}
+
 // recupero il contenitore per i post dall'HTML
 const postContainer = document.getElementById('container');
 
@@ -64,18 +85,18 @@ posts.forEach((post) => {
 
     // destrutturazione
     let { id, content, media, author, likes, created } = post;
-    let {name, image} = author;
+    let { name, image } = author;
 
     let split = created.split('-')
     let data = `${split[2]}/${split[1]}/${split[0]}`;
 
     // aggiungo il post al contenitore
     postContainer.innerHTML +=
-    `<div class="post">
+        `<div class="post">
         <div class="post-header">
             <div class="post-meta">
                 <div class="post-meta__icon">
-                <img class="profile-pic" src="${image}" alt="${name}">
+                    ${image != null ? defaultProfileImage(author) : profileImageInitials(author)}
             </div>
             <div class="post-meta__data">
                 <div class="post-meta__author">${name}</div>
@@ -106,23 +127,23 @@ posts.forEach((post) => {
 // creo un array vuoto per gli ID dei post
 let arrayId = [];
 
-postContainer.addEventListener('click', function(event) {
-    
+postContainer.addEventListener('click', function (event) {
+
     // dichiaro una variabile per il button dei likes
     const likeButtons = event.target.closest('.js-like-button');
-        
+
     // controllo se il pulsante è già stato cliccato
     if (!likeButtons.classList.contains('like-button--liked')) {
         // se non è stato già cliccato aggiungo la classe "like-button--liked"
         likeButtons.classList.add('like-button--liked');
-        
+
         // vado a recuperare l'ID del post tramite l'attributo "data-postid"
         const postId = likeButtons.getAttribute('data-postid');
-        
+
         // recupero il counter del like dal DOM
         const likeCounter = document.getElementById(`like-counter-${postId}`);
         console.log(postId);
-        
+
         // incremento il counter dei likes
         let currentLikes = parseInt(likeCounter.textContent);
         likeCounter.textContent = currentLikes + 1;
@@ -134,4 +155,3 @@ postContainer.addEventListener('click', function(event) {
         }
     }
 });
-
