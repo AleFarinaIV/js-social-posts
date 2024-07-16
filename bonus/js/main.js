@@ -132,17 +132,17 @@ postContainer.addEventListener('click', function (event) {
     // dichiaro una variabile per il button dei likes
     const likeButtons = event.target.closest('.js-like-button');
 
+    // vado a recuperare l'ID del post tramite l'attributo "data-postid"
+    const postId = likeButtons.getAttribute('data-postid');
+
+    // recupero il counter del like dal DOM
+    const likeCounter = document.getElementById(`like-counter-${postId}`);
+    console.log(postId);
+
     // controllo se il pulsante è già stato cliccato
     if (!likeButtons.classList.contains('like-button--liked')) {
         // se non è stato già cliccato aggiungo la classe "like-button--liked"
         likeButtons.classList.add('like-button--liked');
-
-        // vado a recuperare l'ID del post tramite l'attributo "data-postid"
-        const postId = likeButtons.getAttribute('data-postid');
-
-        // recupero il counter del like dal DOM
-        const likeCounter = document.getElementById(`like-counter-${postId}`);
-        console.log(postId);
 
         // incremento il counter dei likes
         let currentLikes = parseInt(likeCounter.textContent);
@@ -151,6 +151,20 @@ postContainer.addEventListener('click', function (event) {
         // vado ad aggiungere gli ID dei post a cui viene messo like nell'array vuoto
         if (!arrayId.includes(postId)) {
             arrayId.push(postId);
+            console.log(arrayId)
+        }
+    }else {
+        // se è già stato cliccato rimuovo la classe "like-button--liked"
+        likeButtons.classList.remove('like-button--liked');
+
+        // decremento il counter dei likes
+        let currentLikes = parseInt(likeCounter.textContent);
+        likeCounter.textContent = currentLikes - 1;
+
+        //vado a rimuovere gli ID dei post a cui viene tolto il like dall'array degli ID
+        if (arrayId.includes(postId)) {
+            // rimuovo l'ID del post dall'array
+            arrayId = arrayId.filter(id => id!== postId);
             console.log(arrayId)
         }
     }
